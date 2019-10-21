@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PlanningPoker</string>
+    <string name="login">Login</string>
+    <string name="enterName">Enter your name...</string>
+    <string name="enterPassword">Enter your password...</string>
+    <string name="rememberMe">Remember me</string>
+</resources>
