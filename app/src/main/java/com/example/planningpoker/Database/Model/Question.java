@@ -1,31 +1,29 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Database.Model;
 
-public class User {
-    public static final String TABLE_NAME = "users";
+public class Question {
+    public static final String TABLE_NAME = "questions";
 
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_USER = "userName";
+    public static final String COLUMN_QUESTION = "question";
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
-    private String userName;
+    private String question;
     private String timestamp;
 
-
-    // Create table SQL query
-    public static final String CREATE_TABLE =
+    public static final String CREATE_TABLE_QUESTION =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_USER + " TEXT,"
+                    + COLUMN_QUESTION + " TEXT,"
                     + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
                     + ")";
 
-    public User() {
+    public Question() {
     }
 
-    public User(int id, String userName, String timestamp) {
+    public Question(int id, String question, String timestamp) {
         this.id = id;
-        this.userName = userName;
+        this.question = question;
         this.timestamp = timestamp;
     }
 
@@ -37,12 +35,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     public String getTimestamp() {

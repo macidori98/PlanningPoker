@@ -1,12 +1,10 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Database.Model;
 
-public class Vote {
-    public static final String TABLE_NAME = "votes";
+public class User {
+    public static final String TABLE_NAME = "users";
 
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_USER_ID = "userID";
-    public static final String COLUMN_QUESTION_ID = "questionID";
-    public static final String COLUMN_VOTE_VALUE = "voteValue";
+    public static final String COLUMN_USER = "userName";
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
@@ -15,19 +13,17 @@ public class Vote {
 
 
     // Create table SQL query
-    public static final String CREATE_TABLE =
+    public static final String CREATE_TABLE_USER =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_USER_ID + " INTEGER,"
-                    + COLUMN_QUESTION_ID + " INTEGER,"
-                    + COLUMN_VOTE_VALUE + " INTEGER,"
+                    + COLUMN_USER + " TEXT,"
                     + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
                     + ")";
 
-    public Vote() {
+    public User() {
     }
 
-    public Vote(int id, String userName, String timestamp) {
+    public User(int id, String userName, String timestamp) {
         this.id = id;
         this.userName = userName;
         this.timestamp = timestamp;
