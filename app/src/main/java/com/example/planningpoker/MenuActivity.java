@@ -25,7 +25,10 @@ public class MenuActivity extends AppCompatActivity {
         btn_choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.recycler_view_choose, new ChooseFragment(), ChooseFragment.class.getSimpleName());
+                fragmentTransaction.commit();
             }
         });
 
@@ -45,3 +48,22 @@ public class MenuActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 }
+/*
+* public static void loadBasicFoodsDetailsFragment(FragmentActivity fragmentActivity, int index) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("index", index);
+        fragment = fragmentActivity.getSupportFragmentManager().findFragmentByTag("BasicFoodsDetailsFragment");
+        if (fragment == null) {
+            fragment = new BasicFoodDetailsFragment();
+        }
+        fragment.setArguments(bundle);
+        loadFragment(fragment, fragmentActivity);
+    }
+
+
+    private static void loadFragment(Fragment fragment, FragmentActivity fragmentActivity) {
+        FragmentTransaction ft = fragmentActivity.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main_activity_content_frame_layout, fragment, fragment.getClass().getSimpleName());
+        ft.commit();
+    }
+* */
