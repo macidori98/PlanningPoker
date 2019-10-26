@@ -20,11 +20,17 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //MARK: - PROPERTIES
+
     public static final String MY_SHARED_PREFERENCES = "LoginData";
     private EditText et_userName, et_password;
     private CheckBox ckb_rememberMe;
     private Button btn_login;
     private DatabaseHelper db;
+
+
+
+    //MARK: - INIT
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +71,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
+    //MARK: - PROTECTED
+
     protected void insertNewUser(String name) {
         List<User> users = new ArrayList<>(db.getUsers());
         boolean userExists = false;
@@ -78,5 +88,12 @@ public class LoginActivity extends AppCompatActivity {
             db.insertUser(name);
             Log.d("UserInserted",name);
         }
+    }
+
+    protected void insertQuestions(){
+        db.insertQuestion("Milyen nehez a login screen?");
+        db.insertQuestion("Milyen nehez a home screen?");
+        db.insertQuestion("Milyen nehez a recyclerView?");
+        db.insertQuestion("Milyen nehez az adatbazis?");
     }
 }
