@@ -1,8 +1,10 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Database;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.planningpoker.R;
 
 public class MainActivity extends AppCompatActivity {
 

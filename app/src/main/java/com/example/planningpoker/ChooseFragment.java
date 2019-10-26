@@ -48,7 +48,7 @@ public class ChooseFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        btn_vote = view.findViewById(R.id.btn_vote);
+        //btn_vote = view.findViewById(R.id.btn_vote);
         myRecyclerView = view.findViewById(R.id.recycler_view_choose);
 
         int numberOfColumns = 4;

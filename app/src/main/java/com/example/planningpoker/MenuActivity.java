@@ -29,6 +29,15 @@ public class MenuActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.recycler_view_choose, new ChooseFragment(), ChooseFragment.class.getSimpleName());
                 fragmentTransaction.commit();
+
+                /*fragment = fragmentActivity.getSupportFragmentManager().findFragmentByTag("BasicFoodsDetailsFragment");
+                if (fragment == null) {
+                    fragment = new BasicFoodDetailsFragment();
+                }
+                fragment.setArguments(bundle);
+                loadFragment(fragment, fragmentActivity);
+                */
+
             }
         });
 
