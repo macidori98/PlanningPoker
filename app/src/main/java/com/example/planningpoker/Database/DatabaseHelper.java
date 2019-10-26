@@ -77,12 +77,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
-//    public void deleteUsers(){
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
-//        db.execSQL(User.CREATE_TABLE_USER);
-//    }
-
     public User getUser(String name) {
         // get readable database as we are not inserting anything
         SQLiteDatabase db = this.getReadableDatabase();
@@ -169,4 +163,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return id;
     }
+
+//    public void deleteUsers(){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
+//        db.execSQL(User.CREATE_TABLE_USER);
+//    }
 }
