@@ -167,6 +167,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    public void deleteUsers(){
 //        SQLiteDatabase db = this.getReadableDatabase();
 //        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
-//        db.execSQL(User.CREATE_TABLE_USER);
+//        db.execSQL(User.CREATE_TABLE_USER);//
 //    }
 }
