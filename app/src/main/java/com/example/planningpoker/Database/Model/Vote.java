@@ -10,12 +10,14 @@ public class Vote {
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
-    private String userName;
+    private int userID;
+    private int questionID;
+    private int voteValue;
     private String timestamp;
 
 
     // Create table SQL query
-    public static final String CREATE_TABLE =
+    public static final String CREATE_TABLE_VOTE=
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_USER_ID + " INTEGER,"
@@ -27,9 +29,11 @@ public class Vote {
     public Vote() {
     }
 
-    public Vote(int id, String userName, String timestamp) {
+    public Vote(int id, int userID, int questionID, int voteValue, String timestamp) {
         this.id = id;
-        this.userName = userName;
+        this.userID = userID;
+        this.questionID = questionID;
+        this.voteValue = voteValue;
         this.timestamp = timestamp;
     }
 
@@ -41,12 +45,28 @@ public class Vote {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int getQuestionID() {
+        return questionID;
+    }
+
+    public void setQuestionID(int questionID) {
+        this.questionID = questionID;
+    }
+
+    public int getVoteValue() {
+        return voteValue;
+    }
+
+    public void setVoteValue(int voteValue) {
+        this.voteValue = voteValue;
     }
 
     public String getTimestamp() {

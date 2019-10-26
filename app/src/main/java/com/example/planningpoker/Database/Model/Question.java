@@ -4,19 +4,17 @@ public class Question {
     public static final String TABLE_NAME = "questions";
 
     public static final String COLUMN_ID = "id";
-    public static final String COLUMN_USER = "question";
+    public static final String COLUMN_QUESTION = "question";
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     private int id;
     private String question;
     private String timestamp;
 
-
-    // Create table SQL query
-    public static final String CREATE_TABLE =
+    public static final String CREATE_TABLE_QUESTION =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_USER + " TEXT,"
+                    + COLUMN_QUESTION + " TEXT,"
                     + COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP"
                     + ")";
 
