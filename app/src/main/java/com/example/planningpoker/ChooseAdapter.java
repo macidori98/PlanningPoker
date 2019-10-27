@@ -9,13 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder> {
 
-    private String mData[]; // = {"0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "Coffee"};
+    private ArrayList<String> mData; // = {"0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "Coffee"};
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    ChooseAdapter(Context context, String[] data) {
+    ChooseAdapter(Context context, ArrayList<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -26,7 +29,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
         ViewHolder(View itemView) {
             super(itemView);
             choose_item = itemView.findViewById(R.id.tv_rec_choose_item);
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
         @Override
@@ -36,7 +39,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     }
 
     String getItem(int id) {
-        return mData[id];
+        return mData.get(id);
     }
 
     void setClickListener(ItemClickListener itemClickListener) {
@@ -56,11 +59,11 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ChooseAdapter.ViewHolder holder, int position) {
-        holder.choose_item.setText(mData[position]);
+        holder.choose_item.setText(String.valueOf(getItemCount()));//getItem(position));
     }
 
     @Override
     public int getItemCount() {
-        return mData.length;
+        return mData.size();
     }
 }

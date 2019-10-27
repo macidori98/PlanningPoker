@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/tv_rec_choose_item"
         android:layout_width="match_parent"
-        android:textSize="@dimen/sp20"
+        android:textSize="@dimen/sp50"
         android:textAlignment="center"
         android:layout_height="match_parent"
         android:background="@color/bisque" />

@@ -27,16 +27,9 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.recycler_view_choose, new ChooseFragment(), ChooseFragment.class.getSimpleName());
-                fragmentTransaction.commit();
+                fragmentTransaction.replace(R.id.activityMain, new ChooseFragment(), ChooseFragment.class.getSimpleName());
+                fragmentTransaction.commitAllowingStateLoss();
 
-                /*fragment = fragmentActivity.getSupportFragmentManager().findFragmentByTag("BasicFoodsDetailsFragment");
-                if (fragment == null) {
-                    fragment = new BasicFoodDetailsFragment();
-                }
-                fragment.setArguments(bundle);
-                loadFragment(fragment, fragmentActivity);
-                */
 
             }
         });
@@ -53,7 +46,7 @@ public class MenuActivity extends AppCompatActivity {
     private void loadFragment(Fragment fragment){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentList, fragment);
+        fragmentTransaction.replace(R.id.recycler_view_list, fragment);
         fragmentTransaction.commit();
     }
 }
