@@ -75,6 +75,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = mInflater.inflate(R.layout.recyclerview_choose_item, parent, false);
         return new ViewHolder(view);
     }
