@@ -46,7 +46,7 @@ public class MenuActivity extends AppCompatActivity {
     private void loadFragment(Fragment fragment){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.recycler_view_list, fragment);
+        fragmentTransaction.replace(R.id.frame_layout_list, fragment);
         fragmentTransaction.commit();
     }
 }
