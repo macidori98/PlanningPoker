@@ -87,7 +87,9 @@ public class ChooseFragment extends Fragment {
         btn_vote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "you clicked on vote", Toast.LENGTH_SHORT).show();
+                //itt teszed be adatbazisba
+                //myadapter.getselecteditem adja meg az indexet
+                Toast.makeText(getActivity(), String.valueOf(myAdapter.getSelectedPosition()+1), Toast.LENGTH_SHORT).show();
             }
         });
     }
