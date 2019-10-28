@@ -16,6 +16,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //MARK: - PROPERTIES
+
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "planning_poker_db";
 
