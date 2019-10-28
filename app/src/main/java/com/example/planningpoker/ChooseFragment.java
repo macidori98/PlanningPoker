@@ -18,6 +18,10 @@ package com.example.planningpoker;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
+        import com.example.planningpoker.Database.DatabaseHelper;
+        import com.example.planningpoker.Database.Model.Question;
+        import com.example.planningpoker.Database.Model.User;
+
         import java.util.ArrayList;
 
         import static java.sql.Types.NULL;
@@ -31,6 +35,7 @@ public class ChooseFragment extends Fragment {
     private RecyclerView myRecyclerView;
     private ChooseAdapter myAdapter;
     private ArrayList<String> data;//= {"0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "Coffee"};
+    private DatabaseHelper db;
 
     @Nullable
     @Override
@@ -47,7 +52,7 @@ public class ChooseFragment extends Fragment {
         data.add("20");
         data.add("40");
         data.add("100");
-        data.add("Coffee");
+        db = new DatabaseHelper(getContext());
 
         btn_vote = view.findViewById(R.id.btn_vote);
         myRecyclerView = view.findViewById(R.id.recycler_view_choose);
@@ -71,9 +76,11 @@ public class ChooseFragment extends Fragment {
         btn_vote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //itt teszed be adatbazisba
-                //myadapter.getselecteditem adja meg az indexet
-                Toast.makeText(getActivity(), String.valueOf(myAdapter.getSelectedPosition()+1), Toast.LENGTH_SHORT).show();
+                User user;
+                user = db.getUser(LoginActivity.loggedUserName);
+                String voteValue = data.get(myAdapter.getSelectedPosition());
+                long voted = db.insertVote(user.getId(), 1,Integer.valueOf(voteValue));
+                Toast.makeText(getActivity(), String.valueOf(voted), Toast.LENGTH_SHORT).show();
             }
         });
     }
