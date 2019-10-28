@@ -34,8 +34,6 @@ public class MenuActivity extends AppCompatActivity {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.activityMain, new ChooseFragment(), ChooseFragment.TAG);
                 fragmentTransaction.commit();
-
-
             }
         });
 
@@ -57,10 +55,8 @@ public class MenuActivity extends AppCompatActivity {
         btn_choose.setVisibility(View.VISIBLE);
         if (getSupportFragmentManager().findFragmentByTag(ListFragment.TAG) != null){
             getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag(ListFragment.TAG)).commit();
-            //Toast.makeText(this, "back list", Toast.LENGTH_LONG).show();
         } else
         if (getSupportFragmentManager().findFragmentByTag(ChooseFragment.TAG) != null) {
-            //Toast.makeText(this, "back", Toast.LENGTH_LONG).show();
             getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag(ChooseFragment.TAG)).commit();
         } else
             {
