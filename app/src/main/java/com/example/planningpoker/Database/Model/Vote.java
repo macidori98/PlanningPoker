@@ -15,8 +15,6 @@ public class Vote {
     private int voteValue;
     private String timestamp;
 
-
-    // Create table SQL query
     public static final String CREATE_TABLE_VOTE=
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
