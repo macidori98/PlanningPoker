@@ -3,6 +3,7 @@ package com.example.planningpoker;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,8 +28,9 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.activityMain, new ChooseFragment(), ChooseFragment.class.getSimpleName());
-                fragmentTransaction.commitAllowingStateLoss();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.activityMain, new ChooseFragment(), ChooseFragment.TAG);
+                fragmentTransaction.commit();
 
 
             }
@@ -41,6 +43,17 @@ public class MenuActivity extends AppCompatActivity {
                 loadFragment(new ListFragment());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (getSupportFragmentManager().findFragmentByTag("CHOOSE_FRAG") != null) {
+            //Toast.makeText(this, "back", Toast.LENGTH_LONG).show();
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHOOSE_FRAG")).commit();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private void loadFragment(Fragment fragment){

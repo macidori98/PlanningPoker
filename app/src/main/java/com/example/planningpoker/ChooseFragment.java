@@ -24,6 +24,8 @@ package com.example.planningpoker;
 
 public class ChooseFragment extends Fragment {
 
+    public static final String TAG = "CHOOSE_FRAG";
+
     private View view;
     private Button btn_vote;
     private RecyclerView myRecyclerView;
@@ -50,24 +52,6 @@ public class ChooseFragment extends Fragment {
         btn_vote = view.findViewById(R.id.btn_vote);
         myRecyclerView = view.findViewById(R.id.recycler_view_choose);
 
-        int numberOfColumns = 2;
-
-
-        /*btn_vote = view.findViewById(R.id.btn_vote);
-        myRecyclerView = view.findViewById(R.id.recycler_view_choose);
-
-        int numberOfColumns = 4;
-        myRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
-        myAdapter = new ChooseAdapter(getContext(), data);
-        myAdapter.setClickListener((ChooseAdapter.ItemClickListener) getActivity());
-        myRecyclerView.setAdapter(myAdapter);
-
-        btn_vote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "you clicked on vote", Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
         return view;
     }
@@ -97,4 +81,6 @@ public class ChooseFragment extends Fragment {
     public void onItemClick(View view, int position) {
         Log.i("TAG", "You clicked number " + myAdapter.getItem(position) + ", which is at cell position " + position);
     }
+
+
 }

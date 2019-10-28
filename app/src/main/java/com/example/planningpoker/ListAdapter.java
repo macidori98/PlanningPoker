@@ -27,7 +27,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         public MyViewHolder(View view){
             super(view);
             tv_dot = view.findViewById(R.id.tv_dot);
-            tv_question = view.findViewById(R.id.tv_question);
+            tv_question = view.findViewById(R.id.tv_question_choose);
             tv_vote = view.findViewById(R.id.tv_vote);
             tv_name = view.findViewById(R.id.tv_name);
         }

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/tv_question"
+        android:id="@+id/tv_question_list"
         android:layout_toEndOf="@+id/tv_dot"
         android:textSize="@dimen/sp20"
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/tv_name"
         android:textAlignment="center"
-        android:layout_below="@+id/tv_question"
+        android:layout_below="@+id/tv_question_list"
         android:layout_toEndOf="@id/tv_dot"
         android:textSize="@dimen/sp20"
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:id="@+id/tv_vote"
         android:paddingStart="@dimen/dp30"
         android:paddingEnd="@dimen/dp30"
-        android:layout_below="@+id/tv_question"
+        android:layout_below="@+id/tv_question_list"
         android:textSize="@dimen/sp20"
         android:textAlignment="center"
         android:layout_toEndOf="@+id/tv_name"
