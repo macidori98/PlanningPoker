@@ -3,6 +3,7 @@ package com.example.planningpoker;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,45 +28,39 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.activityMain, new ChooseFragment(), ChooseFragment.class.getSimpleName());
-                fragmentTransaction.commitAllowingStateLoss();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.activityMain, new ChooseFragment(), ChooseFragment.TAG);
+                fragmentTransaction.commit();
 
 
             }
         });
-
 
         btn_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadFragment(new ListFragment());
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.activityMain, new ListFragment(), ListFragment.TAG);
+                fragmentTransaction.commit();
             }
         });
     }
 
-    private void loadFragment(Fragment fragment){
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout_list, fragment);
-        fragmentTransaction.commit();
-    }
-}
-/*
-* public static void loadBasicFoodsDetailsFragment(FragmentActivity fragmentActivity, int index) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("index", index);
-        fragment = fragmentActivity.getSupportFragmentManager().findFragmentByTag("BasicFoodsDetailsFragment");
-        if (fragment == null) {
-            fragment = new BasicFoodDetailsFragment();
+    @Override
+    public void onBackPressed() {
+
+        if (getSupportFragmentManager().findFragmentByTag("CHOOSE_FRAG") != null) {
+            //Toast.makeText(this, "back", Toast.LENGTH_LONG).show();
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHOOSE_FRAG")).commit();
+        } else if (getSupportFragmentManager().findFragmentByTag("LIST_FRAG") != null){
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("LIST_FRAG")).commit();
+        }else
+            {
+            super.onBackPressed();
         }
-        fragment.setArguments(bundle);
-        loadFragment(fragment, fragmentActivity);
     }
 
 
-    private static void loadFragment(Fragment fragment, FragmentActivity fragmentActivity) {
-        FragmentTransaction ft = fragmentActivity.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_activity_content_frame_layout, fragment, fragment.getClass().getSimpleName());
-        ft.commit();
-    }
-* */
+}
