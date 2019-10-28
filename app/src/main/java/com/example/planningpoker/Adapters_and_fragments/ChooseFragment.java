@@ -35,7 +35,7 @@ public class ChooseFragment extends Fragment {
     private TextView question;
     private int rand;
     private ChooseAdapter myAdapter;
-    private ArrayList<String> data;//= {"0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "Coffee"};
+    private ArrayList<String> data;
     private DatabaseHelper db;
 
     @Nullable

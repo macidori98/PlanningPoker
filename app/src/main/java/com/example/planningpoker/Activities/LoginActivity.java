@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
     //MARK: - PROTECTED
 
     protected void insertNewUser(String name) {
-        //insertQuestions();
         List<User> users = new ArrayList<>(db.getUsers());
         boolean userExists = false;
         for(User user:users){

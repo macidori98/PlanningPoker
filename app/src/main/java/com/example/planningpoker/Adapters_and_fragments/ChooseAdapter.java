@@ -86,14 +86,6 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ChooseAdapter.ViewHolder holder, final int position) {
         holder.choose_item.setText(String.valueOf(getItem(position)));//getItem(position));
-
-        /*holder.choose_item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectedItem = position;
-
-            }
-        });*/
         holder.bind(position);
     }
 
