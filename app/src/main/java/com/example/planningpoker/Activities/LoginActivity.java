@@ -1,4 +1,4 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planningpoker.Database.DatabaseHelper;
 import com.example.planningpoker.Database.Model.User;
+import com.example.planningpoker.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     //MARK: - PROPERTIES
 
     public static final String MY_SHARED_PREFERENCES = "LoginData";
+    public static String loggedUserName;
     private EditText et_userName, et_password;
     private CheckBox ckb_rememberMe;
     private Button btn_login;
@@ -52,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //insertQuestions();
+                loggedUserName = et_userName.getText().toString();
                 if (ckb_rememberMe.isChecked()){
                     SharedPreferences.Editor sharedPreferences = getSharedPreferences(MY_SHARED_PREFERENCES, MODE_PRIVATE).edit();
                     sharedPreferences.putString("name",et_userName.getText().toString());
@@ -76,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
     //MARK: - PROTECTED
 
     protected void insertNewUser(String name) {
+        //insertQuestions();
         List<User> users = new ArrayList<>(db.getUsers());
         boolean userExists = false;
         for(User user:users){
@@ -88,6 +93,10 @@ public class LoginActivity extends AppCompatActivity {
             db.insertUser(name);
             Log.d("UserInserted",name);
         }
+    }
+
+    public String getUserName(){
+        return et_userName.getText().toString();
     }
 
     protected void insertQuestions(){

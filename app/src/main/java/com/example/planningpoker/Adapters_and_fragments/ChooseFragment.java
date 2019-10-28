@@ -1,4 +1,4 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Adapters_and_fragments;
 
         import android.os.Bundle;
         import android.util.Log;
@@ -6,29 +6,37 @@ package com.example.planningpoker;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Button;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import androidx.annotation.NonNull;
         import androidx.annotation.Nullable;
         import androidx.fragment.app.Fragment;
-        import androidx.recyclerview.widget.DividerItemDecoration;
         import androidx.recyclerview.widget.GridLayoutManager;
-        import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
-        import java.util.ArrayList;
+        import com.example.planningpoker.Activities.LoginActivity;
+        import com.example.planningpoker.Activities.MenuActivity;
+        import com.example.planningpoker.Database.DatabaseHelper;
+        import com.example.planningpoker.Database.Model.Question;
+        import com.example.planningpoker.Database.Model.User;
+        import com.example.planningpoker.R;
 
-        import static java.sql.Types.NULL;
+        import java.util.ArrayList;
+        import java.util.Random;
 
 public class ChooseFragment extends Fragment {
+
+    public static final String TAG = "CHOOSE_FRAG";
 
     private View view;
     private Button btn_vote;
     private RecyclerView myRecyclerView;
+    private TextView question;
+    private int rand;
     private ChooseAdapter myAdapter;
     private ArrayList<String> data;//= {"0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "Coffee"};
+    private DatabaseHelper db;
 
     @Nullable
     @Override
@@ -45,30 +53,20 @@ public class ChooseFragment extends Fragment {
         data.add("20");
         data.add("40");
         data.add("100");
-        data.add("Coffee");
+        db = new DatabaseHelper(getContext());
 
         btn_vote = view.findViewById(R.id.btn_vote);
         myRecyclerView = view.findViewById(R.id.recycler_view_choose);
-
-        int numberOfColumns = 2;
-
-
-        /*btn_vote = view.findViewById(R.id.btn_vote);
-        myRecyclerView = view.findViewById(R.id.recycler_view_choose);
-
-        int numberOfColumns = 4;
-        myRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), numberOfColumns));
-        myAdapter = new ChooseAdapter(getContext(), data);
-        myAdapter.setClickListener((ChooseAdapter.ItemClickListener) getActivity());
-        myRecyclerView.setAdapter(myAdapter);
-
-        btn_vote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "you clicked on vote", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
+        question = view.findViewById(R.id.tv_question_choose);
+        for(int i=0;i<100;i++) {
+            rand = new Random().nextInt(4) + 1;
+            String sad = String.valueOf(rand);
+            Log.d("i",sad);
+        }
+        rand = 4;
+        question.setText(db.getQuestion(rand).getQuestion());
+        MenuActivity.btn_choose.setVisibility(View.INVISIBLE);
+        MenuActivity.btn_list.setVisibility(View.INVISIBLE);
         return view;
     }
 
@@ -81,15 +79,19 @@ public class ChooseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         myRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
         myAdapter = new ChooseAdapter(getContext(), data);
-        //myAdapter.setClickListener((ChooseAdapter.ItemClickListener) getActivity());
         myRecyclerView.setAdapter(myAdapter);
 
         btn_vote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //itt teszed be adatbazisba
-                //myadapter.getselecteditem adja meg az indexet
-                Toast.makeText(getActivity(), String.valueOf(myAdapter.getSelectedPosition()+1), Toast.LENGTH_SHORT).show();
+                TextView q = view.findViewById(R.id.tv_question_choose);
+                User user;
+                user = db.getUser(LoginActivity.loggedUserName);
+                String voteValue = data.get(myAdapter.getSelectedPosition());
+                Question question = db.getQuestion(rand);
+
+                long voted = db.insertVote(user.getId(), rand,Integer.valueOf(voteValue));
+                Toast.makeText(getActivity(), "Successful vote", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -97,4 +99,6 @@ public class ChooseFragment extends Fragment {
     public void onItemClick(View view, int position) {
         Log.i("TAG", "You clicked number " + myAdapter.getItem(position) + ", which is at cell position " + position);
     }
+
+
 }
