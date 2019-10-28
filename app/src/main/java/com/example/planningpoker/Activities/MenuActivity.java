@@ -55,17 +55,14 @@ public class MenuActivity extends AppCompatActivity {
     public void onBackPressed() {
         btn_list.setVisibility(View.VISIBLE);
         btn_choose.setVisibility(View.VISIBLE);
-        if (getSupportFragmentManager().findFragmentByTag("CHOOSE_FRAG") != null) {
-            //Toast.makeText(this, "back", Toast.LENGTH_LONG).show();
-            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHOOSE_FRAG")).commit();
-        } else {
-            super.onBackPressed();
-        }
-
-        if (getSupportFragmentManager().findFragmentByTag("LIST_FRAG") != null){
-            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("LIST_FRAG")).commit();
+        if (getSupportFragmentManager().findFragmentByTag(ListFragment.TAG) != null){
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag(ListFragment.TAG)).commit();
             //Toast.makeText(this, "back list", Toast.LENGTH_LONG).show();
-        }else
+        } else
+        if (getSupportFragmentManager().findFragmentByTag(ChooseFragment.TAG) != null) {
+            //Toast.makeText(this, "back", Toast.LENGTH_LONG).show();
+            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag(ChooseFragment.TAG)).commit();
+        } else
             {
             super.onBackPressed();
         }

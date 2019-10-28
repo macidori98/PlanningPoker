@@ -9,9 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.planningpoker.Database.DatabaseHelper;
 import com.example.planningpoker.R;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.zip.DataFormatException;
 
 import static com.example.planningpoker.R.color.blue;
 
@@ -22,6 +25,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     private ItemClickListener mClickListener;
     private int selectedItem;
     private Context context;
+    private DatabaseHelper db;
 
     ChooseAdapter(Context context, ArrayList<String> data) {
         this.mInflater = LayoutInflater.from(context);

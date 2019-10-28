@@ -10,7 +10,6 @@
         android:id="@+id/tv_question_choose"
         android:layout_width="match_parent"
         android:textSize="@dimen/sp20"
-        android:text="ffghjk"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

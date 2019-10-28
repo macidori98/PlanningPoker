@@ -61,6 +61,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return question;
     }
 
+    public Question getQuestion(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(Question.TABLE_NAME,
+                new String[]{Question.COLUMN_ID, Question.COLUMN_QUESTION, Question.COLUMN_TIMESTAMP},
+                Question.COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+        Question question = new Question(
+                cursor.getInt(cursor.getColumnIndex(Question.COLUMN_ID)),
+                cursor.getString(cursor.getColumnIndex(Question.COLUMN_QUESTION)),
+                cursor.getString(cursor.getColumnIndex(Question.COLUMN_TIMESTAMP)));
+        cursor.close();
+        return question;
+    }
+
     public User getUser(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(User.TABLE_NAME,

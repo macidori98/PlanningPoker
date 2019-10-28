@@ -6,6 +6,8 @@ package com.example.planningpoker.Adapters_and_fragments;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Button;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
         import androidx.annotation.NonNull;
         import androidx.annotation.Nullable;
@@ -16,10 +18,12 @@ package com.example.planningpoker.Adapters_and_fragments;
         import com.example.planningpoker.Activities.LoginActivity;
         import com.example.planningpoker.Activities.MenuActivity;
         import com.example.planningpoker.Database.DatabaseHelper;
+        import com.example.planningpoker.Database.Model.Question;
         import com.example.planningpoker.Database.Model.User;
         import com.example.planningpoker.R;
 
         import java.util.ArrayList;
+        import java.util.Random;
 
 public class ChooseFragment extends Fragment {
 
@@ -28,6 +32,8 @@ public class ChooseFragment extends Fragment {
     private View view;
     private Button btn_vote;
     private RecyclerView myRecyclerView;
+    private TextView question;
+    private int rand;
     private ChooseAdapter myAdapter;
     private ArrayList<String> data;//= {"0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "Coffee"};
     private DatabaseHelper db;
@@ -51,7 +57,10 @@ public class ChooseFragment extends Fragment {
 
         btn_vote = view.findViewById(R.id.btn_vote);
         myRecyclerView = view.findViewById(R.id.recycler_view_choose);
-
+        question = view.findViewById(R.id.tv_question_choose);
+        rand = new Random().nextInt(3)+1;
+        //rand = 4;
+        question.setText(db.getQuestion(rand).getQuestion());
         MenuActivity.btn_choose.setVisibility(View.INVISIBLE);
         MenuActivity.btn_list.setVisibility(View.INVISIBLE);
         return view;
@@ -71,11 +80,14 @@ public class ChooseFragment extends Fragment {
         btn_vote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TextView q = view.findViewById(R.id.tv_question_choose);
                 User user;
                 user = db.getUser(LoginActivity.loggedUserName);
                 String voteValue = data.get(myAdapter.getSelectedPosition());
-                long voted = db.insertVote(user.getId(), 1,Integer.valueOf(voteValue));
-                //Toast.makeText(getActivity(), String.valueOf(voted), Toast.LENGTH_SHORT).show();
+                Question question = db.getQuestion(rand);
+
+                long voted = db.insertVote(user.getId(), rand,Integer.valueOf(voteValue));
+                Toast.makeText(getActivity(), "Successful vote", Toast.LENGTH_SHORT).show();
             }
         });
     }
