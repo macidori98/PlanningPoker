@@ -1,25 +1,24 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Adapters_and_fragments;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.planningpoker.Activities.LoginActivity;
+import com.example.planningpoker.Activities.MenuActivity;
 import com.example.planningpoker.Database.DatabaseHelper;
 import com.example.planningpoker.Database.Model.User;
 import com.example.planningpoker.Database.Model.Vote;
+import com.example.planningpoker.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListFragment extends Fragment {
@@ -42,6 +41,8 @@ public class ListFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_list, container, false);
         myRecyclerView = view.findViewById(R.id.recycler_view_list);
         db = new DatabaseHelper(getContext());
+        MenuActivity.btn_choose.setVisibility(View.INVISIBLE);
+        MenuActivity.btn_list.setVisibility(View.INVISIBLE);
         return view;
     }
 
@@ -55,7 +56,6 @@ public class ListFragment extends Fragment {
         User user = db.getUser(LoginActivity.loggedUserName);
         mData = db.getVotes(user.getId());
 
-        //itt kell betenni az adatokat az mdataba
 
 
         myRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

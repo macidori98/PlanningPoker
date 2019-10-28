@@ -1,4 +1,4 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,13 +7,16 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.planningpoker.Adapters_and_fragments.ChooseFragment;
+import com.example.planningpoker.Adapters_and_fragments.ListFragment;
+import com.example.planningpoker.R;
+
 public class MenuActivity extends AppCompatActivity {
 
-    private Button btn_choose, btn_list;
+    public static Button btn_choose, btn_list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,12 +53,18 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        btn_list.setVisibility(View.VISIBLE);
+        btn_choose.setVisibility(View.VISIBLE);
         if (getSupportFragmentManager().findFragmentByTag("CHOOSE_FRAG") != null) {
             //Toast.makeText(this, "back", Toast.LENGTH_LONG).show();
             getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("CHOOSE_FRAG")).commit();
-        } else if (getSupportFragmentManager().findFragmentByTag("LIST_FRAG") != null){
+        } else {
+            super.onBackPressed();
+        }
+
+        if (getSupportFragmentManager().findFragmentByTag("LIST_FRAG") != null){
             getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("LIST_FRAG")).commit();
+            //Toast.makeText(this, "back list", Toast.LENGTH_LONG).show();
         }else
             {
             super.onBackPressed();

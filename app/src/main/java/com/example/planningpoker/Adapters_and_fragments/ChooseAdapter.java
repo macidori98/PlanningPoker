@@ -1,4 +1,4 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Adapters_and_fragments;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,12 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
+import com.example.planningpoker.R;
+
 import java.util.ArrayList;
 
-import static com.example.planningpoker.R.color.aqua;
 import static com.example.planningpoker.R.color.blue;
-import static com.example.planningpoker.R.color.dark_blue;
 
 public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder> {
 

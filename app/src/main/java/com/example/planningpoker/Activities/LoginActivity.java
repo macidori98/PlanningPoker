@@ -1,4 +1,4 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planningpoker.Database.DatabaseHelper;
 import com.example.planningpoker.Database.Model.User;
+import com.example.planningpoker.R;
 
 import java.util.ArrayList;
 import java.util.List;

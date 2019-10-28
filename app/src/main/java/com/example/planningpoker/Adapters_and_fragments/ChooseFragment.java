@@ -1,4 +1,4 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Adapters_and_fragments;
 
         import android.os.Bundle;
         import android.util.Log;
@@ -6,25 +6,20 @@ package com.example.planningpoker;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Button;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
-        import android.widget.Toast;
 
         import androidx.annotation.NonNull;
         import androidx.annotation.Nullable;
         import androidx.fragment.app.Fragment;
-        import androidx.recyclerview.widget.DividerItemDecoration;
         import androidx.recyclerview.widget.GridLayoutManager;
-        import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
+        import com.example.planningpoker.Activities.LoginActivity;
+        import com.example.planningpoker.Activities.MenuActivity;
         import com.example.planningpoker.Database.DatabaseHelper;
-        import com.example.planningpoker.Database.Model.Question;
         import com.example.planningpoker.Database.Model.User;
+        import com.example.planningpoker.R;
 
         import java.util.ArrayList;
-
-        import static java.sql.Types.NULL;
 
 public class ChooseFragment extends Fragment {
 
@@ -57,7 +52,8 @@ public class ChooseFragment extends Fragment {
         btn_vote = view.findViewById(R.id.btn_vote);
         myRecyclerView = view.findViewById(R.id.recycler_view_choose);
 
-
+        MenuActivity.btn_choose.setVisibility(View.INVISIBLE);
+        MenuActivity.btn_list.setVisibility(View.INVISIBLE);
         return view;
     }
 
@@ -70,7 +66,6 @@ public class ChooseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         myRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false));
         myAdapter = new ChooseAdapter(getContext(), data);
-        //myAdapter.setClickListener((ChooseAdapter.ItemClickListener) getActivity());
         myRecyclerView.setAdapter(myAdapter);
 
         btn_vote.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +75,7 @@ public class ChooseFragment extends Fragment {
                 user = db.getUser(LoginActivity.loggedUserName);
                 String voteValue = data.get(myAdapter.getSelectedPosition());
                 long voted = db.insertVote(user.getId(), 1,Integer.valueOf(voteValue));
-                Toast.makeText(getActivity(), String.valueOf(voted), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), String.valueOf(voted), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.example.planningpoker;
+package com.example.planningpoker.Adapters_and_fragments;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,8 +13,8 @@ import com.example.planningpoker.Database.DatabaseHelper;
 import com.example.planningpoker.Database.Model.Question;
 import com.example.planningpoker.Database.Model.User;
 import com.example.planningpoker.Database.Model.Vote;
+import com.example.planningpoker.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {

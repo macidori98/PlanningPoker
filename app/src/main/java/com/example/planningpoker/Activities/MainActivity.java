@@ -1,4 +1,4 @@
-package com.example.planningpoker.Database;
+package com.example.planningpoker.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
