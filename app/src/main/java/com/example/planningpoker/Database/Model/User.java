@@ -11,8 +11,6 @@ public class User {
     private String userName;
     private String timestamp;
 
-
-    // Create table SQL query
     public static final String CREATE_TABLE_USER =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"

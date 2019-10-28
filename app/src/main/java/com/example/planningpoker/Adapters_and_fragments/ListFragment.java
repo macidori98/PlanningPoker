@@ -25,7 +25,6 @@ public class ListFragment extends Fragment {
 
     public static final String TAG = "LIST_FRAG";
 
-
     private View view;
     private RecyclerView myRecyclerView;
     private LayoutInflater mInflater;
@@ -55,13 +54,8 @@ public class ListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         User user = db.getUser(LoginActivity.loggedUserName);
         mData = db.getVotes(user.getId());
-
-
-
         myRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         myAdapter = new ListAdapter(getContext(), mData);
-        //myAdapter.setClickListener((ChooseAdapter.ItemClickListener) getActivity());
         myRecyclerView.setAdapter(myAdapter);
-
     }
 }
