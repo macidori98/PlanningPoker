@@ -58,8 +58,12 @@ public class ChooseFragment extends Fragment {
         btn_vote = view.findViewById(R.id.btn_vote);
         myRecyclerView = view.findViewById(R.id.recycler_view_choose);
         question = view.findViewById(R.id.tv_question_choose);
-        rand = new Random().nextInt(3)+1;
-        //rand = 4;
+        for(int i=0;i<100;i++) {
+            rand = new Random().nextInt(4) + 1;
+            String sad = String.valueOf(rand);
+            Log.d("i",sad);
+        }
+        rand = 4;
         question.setText(db.getQuestion(rand).getQuestion());
         MenuActivity.btn_choose.setVisibility(View.INVISIBLE);
         MenuActivity.btn_list.setVisibility(View.INVISIBLE);

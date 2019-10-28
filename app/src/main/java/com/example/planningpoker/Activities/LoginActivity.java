@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //insertQuestions();
                 loggedUserName = et_userName.getText().toString();
                 if (ckb_rememberMe.isChecked()){
                     SharedPreferences.Editor sharedPreferences = getSharedPreferences(MY_SHARED_PREFERENCES, MODE_PRIVATE).edit();
