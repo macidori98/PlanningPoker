@@ -113,6 +113,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
+    public int getQuestionCount() {
+        // get readable database as we are not inserting anything
+        List<Question> votes = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + Question.TABLE_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Question vote = new Question();
+                vote.setId(cursor.getInt(cursor.getColumnIndex(Question.COLUMN_ID)));
+                //vote.setQuestionID(cursor.getInt(cursor.getColumnIndex(Vote.COLUMN_QUESTION_ID)));
+                //vote.setTimestamp(cursor.getString(cursor.getColumnIndex(Vote.COLUMN_TIMESTAMP)));
+                //vote.setUserID(cursor.getInt(cursor.getColumnIndex(Vote.COLUMN_USER_ID)));
+                //vote.setVoteValue(cursor.getInt(cursor.getColumnIndex(Vote.COLUMN_VOTE_VALUE)));
+                votes.add(vote);
+            } while (cursor.moveToNext());
+        }
+
+        db.close();
+        return votes.size();
+    }
+
     public List<Vote> getVotes(long userID) {
         List<Vote> votes = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + Vote.TABLE_NAME + " WHERE userID = " + userID +" ORDER BY " +
